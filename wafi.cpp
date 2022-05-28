@@ -41,6 +41,7 @@ It's simple as that.
 
 #include "buffer.h"
 #include <cstring>
+#include <cctype>
 
 int main(int argc, char* argv[]) {
 	bool debug = false;
@@ -71,7 +72,10 @@ int main(int argc, char* argv[]) {
 		} else if (ch == CTRL_D_CHAR) {
 			// End of File
 		} else {
-			buffer.put(ch);
+			// filter input
+			if (!std::iscntrl(ch)) {
+				buffer.put(ch);
+			}
 		}
 
 		// clear stdout
