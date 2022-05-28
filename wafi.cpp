@@ -38,6 +38,7 @@ It's simple as that.
 
 #define BACKSPACE_CHAR 127
 #define CTRL_D_CHAR 4
+#define ESCAPE 27
 
 #include "buffer.h"
 #include <cstring>
@@ -73,7 +74,19 @@ int main(int argc, char* argv[]) {
 			// End of File
 		} else {
 			// filter input
-			if (!std::iscntrl(ch)) {
+			if (std::iscntrl(ch)) {
+				if (ch == ESCAPE) {
+					// escape sequence or not (it can be just ESC-key...)
+					// left arrow: 224; 75
+					// right arrow: 224; 77
+					// down arrow: 224; 80
+					// up arrow: 224; 72
+
+					// 1) read next two chars
+					// if arrows move cursor: next, prev etc
+					// else: feed buffer
+				}
+			} else {
 				buffer.put(ch);
 			}
 		}
