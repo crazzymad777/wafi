@@ -1,4 +1,4 @@
-// Wait All F*cking Input
+// Waflya
 // Copyright (C) 2022  Yury Moskov
 //
 // Licensed under GPL 3.0
@@ -21,7 +21,7 @@ void enable_raw_mode() {
 	atexit(disable_raw_mode);
 
 	struct termios new_attr = old_attr;
-	new_attr.c_lflag &= ~(ECHO | ICANON);
+	new_attr.c_lflag &= ~(ICANON);
 
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &new_attr);
 }
@@ -34,6 +34,8 @@ void enable_raw_mode() {
 5) Print input
 
 It's simple as that.
+
+P.S. useless software.
 */
 
 #define BACKSPACE_CHAR 127
@@ -92,13 +94,13 @@ int main(int argc, char* argv[]) {
 		}
 
 		// clear stdout
-		printf("\033[H\033[J");
-		std::flush(std::cout);
+		//printf("\033[H\033[J");
+		//std::flush(std::cout);
 
-		if (debug) {
-			printf("%d,%d\n", buffer.getIndex(), buffer.length());
-		}
-		printf("%s", buffer.str().c_str());
+		//if (debug) {
+		//	printf("%d,%d\n", buffer.getIndex(), buffer.length());
+		//}
+		//printf("%s", buffer.str().c_str());
 	} while(!std::cin.eof() && ch != CTRL_D_CHAR);
 
 	if (debug) {

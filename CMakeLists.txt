@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name
-project(wafi)
+project(waflya)
 
 # add the executable
-add_executable(wafi wafi.cpp buffer.cpp)
+add_executable(waflya waflya.cpp buffer.cpp)
